@@ -1,0 +1,29 @@
+﻿@{
+    var controller = ViewContext.RouteData.Values["controller"]?
+    .ToString()?
+    .ToLower()
+    ?? String.Empty;
+}
+
+<a class="navbar-brand"
+    asp-controller="home" asp-action="Index"
+    style="font-size: 30px; font-family: 'Times New Roman'">
+    Miachyn
+</a>
+<div class="navbar-nav">
+    <a class="nav-item nav-link @(controller=="home"?"active":"")"
+       asp-controller="Home" asp-action="Index"
+       style="font-size: 20px; font-family: 'Times New Roman'">
+        LAB 09
+    </a>
+    <a class="nav-item nav-link @(controller=="product"?"active":"")"
+       asp-controller="Product" asp-action="Index"
+       style="font-size: 20px; font-family: 'Times New Roman'">
+        Catalog
+    </a>
+    <a class="nav-item nav-link @(controller == "admin" ? "active" : "")"
+       asp-area="Admin" asp-page="/Index"
+       style="font-size: 20px; font-family: 'Times New Roman'">
+        Administration
+    </a>
+</div>

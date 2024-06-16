@@ -1,0 +1,78 @@
+﻿@model SelectList
+
+@{
+    ViewBag.Title = "Miachyn.UI";
+}
+
+<main class="container">
+    <h1 style="font-size: 50px; font-family: 'Times New Roman'"><b>@ViewData["LabTitle"]</b></h1>
+    <h1 style="font-family: 'Times New Roman'">List</h1>
+    <ol type="A" style="list-style-type:upper-alpha; font-size: 20px; font-family: 'Times New Roman'">
+        @for (int i = 1; i <= 5; i++)
+        {
+            <li>List element @i</li>
+        }
+    </ol>
+    <hr />
+    <h2 style="font-family: 'Times New Roman'"><b>Form</b></h2>
+    <form role="form" method="post" asp-action="index">
+        <div class="row">
+            <div class="col-sm-10 offset-sm-2">
+                <select class="form-select" asp-items="Model" name="selDemo" style="margin-bottom: 20px; font-size: 20px; font-family: 'Times New Roman'"> </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <div class="form-check" style=" margin-left: 220px; font-size: 20px; font-family: 'Times New Roman'">
+                    <input class="form-check-input" type="checkbox" id="gridCheck1" name="check1">
+                    <label class="form-check-label" for="gridCheck1">
+                        Check-Box 1
+                    </label>
+                </div>
+                <div class="form-check" style=" margin-left: 220px; font-size: 20px; font-family: 'Times New Roman'">
+                    <input class="form-check-input" type="checkbox" id="gridCheck2" name="check2">
+                    <label class="form-check-label" for="gridCheck2">
+                        Check-Box 2
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <div class="form-check-inline" style="margin-left: 220px;  margin-top: 20px; margin-bottom: 20px; font-size: 20px; font-family: 'Times New Roman'">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="first">
+                    <label class="form-check-label" for="gridRadios1">
+                        First radio
+                    </label>
+                </div>
+                <div class="form-check-inline" style="margin-bottom: 20px; font-size: 20px; font-family: 'Times New Roman'">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="second">
+                    <label class="form-check-label" for="gridRadios2">
+                        Second radio
+                    </label>
+                </div>
+                <div class="form-check-inline" style="margin-bottom: 20px; font-size: 20px; font-family: 'Times New Roman'">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="third">
+                    <label class="form-check-label" for="gridRadios3">
+                        Third radio
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail" class="col-sm-2 col-form-label" style="margin-bottom: 20px; font-size: 20px; font-family: 'Times New Roman'">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail" name="email" style="font-size: 20px; font-family: 'Times New Roman'" placeholder="Input Email">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label" style="margin-bottom: 20px; font-size: 20px; font-family: 'Times New Roman'">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" name="password" style="font-size: 20px; font-family: 'Times New Roman'" placeholder="Input Password">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="font-size: 20px; font-family: 'Times New Roman'">Send</button>
+    </form>
+</main>

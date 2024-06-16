@@ -1,0 +1,33 @@
+﻿@page "/products"
+@using Miachyn.Blazor.Components.ProductComponents
+@using Miachyn.Blazor.Services
+@using Miachyn.Domain.Entities
+@using Miachyn.Domain.Models
+
+@rendermode InteractiveServer
+
+@* @inject IFurnitureService<Furniture> FurnitureService *@
+
+<CascadingValue Value="FurnitureService">
+    <FurnitureList FurnitureSelected="ShowDetails" />
+    <Pager />
+</CascadingValue>
+
+<FurnitureDetails Furniture="SelectedFurniture" />
+
+@code {
+    [Inject] IFurnitureService<Furniture> FurnitureService { get; set; }
+
+    [Parameter]
+    public Furniture SelectedFurniture { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FurnitureService.GetProducts();
+    }
+
+    void ShowDetails(int id)
+    {
+        SelectedFurniture = FurnitureService.Products.First(d => d.Id == id);
+    }
+}

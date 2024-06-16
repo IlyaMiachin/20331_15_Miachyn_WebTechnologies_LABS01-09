@@ -1,0 +1,51 @@
+﻿@using Miachyn.Blazor.Services
+@using Miachyn.Domain.Entities
+@implements IDisposable
+@rendermode InteractiveServer
+
+<h3 style="font-size: 50px; font-family: 'Times New Roman'"><b>Furniture List</b></h3>
+
+@if (FurnitureService.Products != null && FurnitureService.Products.Count() != 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <th style="font-size: 20px; font-family: 'Times New Roman'">Name</th><th></th>
+            @foreach (var item in FurnitureService.Products)
+            {
+            <tr>
+                <td style="font-size: 20px; font-family: 'Times New Roman'">@item.Name</td>
+                <td>
+                    <button class="btn btn-outline-dark"
+                            @onclick="@(()=>OnFurnitureSelected(item.Id))"
+                            style="font-size: 20px; font-family: 'Times New Roman'">
+                            Details
+                    </button>
+                </td>
+            </tr>
+            }
+        </thead>
+    </table>
+}
+
+@code {
+    [CascadingParameter]
+    public IFurnitureService<Furniture> FurnitureService { get; set; }
+
+    [Parameter]
+    public EventCallback<int> FurnitureSelected { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        FurnitureService.ListChanged += StateHasChanged;
+    }
+
+    public async void OnFurnitureSelected(int id)
+    {
+        await FurnitureSelected.InvokeAsync(id);
+    }
+
+    public void Dispose()
+    {
+        FurnitureService.ListChanged -= StateHasChanged;
+    }
+}

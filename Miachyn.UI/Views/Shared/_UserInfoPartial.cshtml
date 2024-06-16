@@ -1,0 +1,56 @@
+﻿@using System.Security.Claims;
+@if (User.Identity.IsAuthenticated)
+{
+    @await Component.InvokeAsync("Cart")
+    <div class="dropdown ms-4 nav-color">
+        <button class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-bs-toggle="dropdown"
+            style="font-size: 20px; font-family: 'Times New Roman'"
+            aria-expanded="false">
+            @User.Claims.FirstOrDefault(c => c.Type.Equals("Name", StringComparison.OrdinalIgnoreCase))?.Value
+            <img src="@Url.Action("GetAvatar","Image")"
+                width="30"
+                alt="User"
+                class="rounded nav-color" />
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li>
+                <span class="dropdown-item-text"
+                    style="font-size: 20px; font-family: 'Times New Roman'">
+                    <img src="@Url.Action("GetAvatar","Image")"
+                        width="50"
+                        alt="User"
+                        class="rounded" />
+                        @User.Identity?.Name!
+                </span>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <form id="logoutForm" class="form-inline"
+                    asp-area="Identity"
+                    asp-route-returnurl="/"
+                    asp-page="/Account/Logout">
+                    <button id="logout"
+                            type="submit"
+                            class="nav-link btn btn-link text-dark"
+                            style="font-size: 20px; font-family: 'Times New Roman'">
+                            Logout
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <div class="navbar-nav ms-auto">
+        <a asp-area="Identity"
+           asp-page="/Account/Login"
+           class="nav-item nav-link"
+           style="font-size: 20px; font-family: 'Times New Roman'">
+            Login
+        </a>
+    </div>
+}

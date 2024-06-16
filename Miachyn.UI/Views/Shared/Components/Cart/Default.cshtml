@@ -1,0 +1,13 @@
+﻿@* <a class="navbar-text ms-auto"
+   asp-controller="Cart" asp-action="Index"
+   style="font-size: 20px; font-family: 'Times New Roman'">
+    00,0 руб
+    <i class="fa-solid fa-cart-shopping"></i>
+    (0)
+</a> *@
+@using Miachyn.Domain.Models
+@model Cart
+<a asp-action="Index" asp-controller="Cart" class="navbar-text ms-auto" style="font-size: 20px; font-family: 'Times New Roman'">
+    @Model.TotalPrice руб. <i class="fa-solid fa-cart-shopping"></i>
+    (@Model.Count)
+</a>

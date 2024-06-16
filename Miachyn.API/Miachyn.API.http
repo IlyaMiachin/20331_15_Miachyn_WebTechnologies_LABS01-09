@@ -1,0 +1,6 @@
+@Miachyn.API_HostAddress = http://localhost:5133
+
+GET {{Miachyn.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

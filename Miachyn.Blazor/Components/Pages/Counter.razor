@@ -1,0 +1,19 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1 style="font-size: 50px; font-family: 'Times New Roman'"><b>Counter</b></h1>
+
+<p role="status" style="font-size: 20px; font-family: 'Times New Roman'">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount" style="font-size: 20px; font-family: 'Times New Roman'">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

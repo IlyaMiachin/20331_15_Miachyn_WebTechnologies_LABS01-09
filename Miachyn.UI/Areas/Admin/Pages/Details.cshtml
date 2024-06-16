@@ -1,0 +1,49 @@
+﻿@page
+@model Miachyn.UI.Areas.Admin.Pages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="font-size: 50px; font-family: 'Times New Roman'"><b>Details</b></h1>
+
+<div>
+    <h4 style="font-size: 50px; font-family: 'Times New Roman'"><b>Furniture</b></h4>
+    <hr />
+    <dl class="row" style="font-size: 20px; font-family: 'Times New Roman'">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Furniture.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Furniture.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Furniture.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Furniture.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Furniture.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Furniture.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Furniture.Image)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Furniture.Image)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Furniture.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Furniture.Category.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Furniture.Id" style="font-size: 20px; font-family: 'Times New Roman'">Edit</a> |
+    <a asp-page="./Index" style="font-size: 20px; font-family: 'Times New Roman'">Back to List</a>
+</div>

@@ -1,0 +1,53 @@
+﻿@using Miachyn.Blazor.Services
+@using Miachyn.Domain.Entities
+@implements IDisposable
+@rendermode InteractiveServer
+
+<div class="btn-group" role="group" aria-label="Pager">
+    <!-- Кнопка Previous -->
+    <button type="button" class="btn btn-outline-primary @(previousEnabled?"":"disabled")"
+            @onclick="@(e=>OnPageSelected(FurnitureService.CurrentPage-1))">
+        <span aria-hidden="true">&laquo;</span>
+    </button>
+    @for (int i = 1; i <= FurnitureService.TotalPages; i++)
+    {
+        var temp = i;
+        <button type="button" class="btn btn-outline-primary @(IsActive(temp)?"active":"")"
+                @onclick="@(e=>OnPageSelected(temp))">
+            @temp
+        </button>
+    }
+    <!-- Кнопка Next -->
+    <button type="button" class="btn btn-outline-primary @(nextEnabled?"":"disabled")"
+            @onclick="@(e=>OnPageSelected(FurnitureService.CurrentPage+1))">
+        <span aria-hidden="true">&raquo;</span>
+    </button>
+</div>
+
+@code {
+    [CascadingParameter]
+    public IFurnitureService<Furniture> FurnitureService { get; set; }
+    protected override void OnInitialized()
+    {
+        FurnitureService.ListChanged += StateHasChanged;
+    }
+    // Кнопка Previous доступна?
+    bool previousEnabled { get => FurnitureService.CurrentPage != 1; }
+    // Кнопка Next доступна
+    bool nextEnabled
+    {
+        get => FurnitureService.CurrentPage != FurnitureService.TotalPages;
+    }
+    // Это текущая страница?
+    bool IsActive(int pageNo) => pageNo == FurnitureService.CurrentPage;
+    // Обработчик клика кнопки
+    async void OnPageSelected(int pageNo)
+    {
+        await FurnitureService.GetProducts(pageNo);
+    }
+    public void Dispose()
+    {
+        FurnitureService.ListChanged -= StateHasChanged;
+    }
+}
+
